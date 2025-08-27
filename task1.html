@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>task1</title>
+    <style>
+        .majordiv{
+            margin-top: 0px;
+        }
+        .div1{
+            display: none;
+        }
+        body{
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(-45deg, #f70000, #1ebfd1, #ffffff, #4834d4);
+            background-size: 400% 400%;
+            animation: animateBG 10s ease infinite;
+            }
+        @keyframes animateBG {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+            }
+
+        .game-box{
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+                }  
+        .line1{
+            font-size: 36px;
+            color: black;
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+        input{
+            color: white;
+            background-color: black;
+            border: solid;
+            font-size: 20px;
+            border-color: white;
+            border-radius: 20px;
+            padding: 10px 10px;
+            border-width: 4px;
+        }
+        button{
+            font-size: 20px;
+            padding: 9px 8px;
+            border-radius: 20px;
+            border: solid;
+            border-width: 4px;
+            border-color: white;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            transition: background-color 1s;
+            transition: border-color 1s;
+        }
+        button:hover{
+            border-width: 6px;
+        }
+        button:active{
+            opacity: 0.8;
+            border-color: rgba(0, 0, 0, 0.548);
+            background-color: white;
+            color: black;
+        }
+        .js-p1, .js-result{
+            font-size: 30px;
+            color: black;
+        }
+        .js-result{
+            color: rgb(225, 43, 43);
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="majordiv game-box">
+    <p class="line1">🎲 Lucky Fellow Game 🎲</p>
+    
+    <input type="text" placeholder="enter your name" class="js-name inp1">
+
+    <button onclick="function1()" class="startgame">start game</button>
+
+    <div class="div1">
+        <p class="js-p1"></p>
+        <input type="number" placeholder="enter" min="1" max="9" class="js-inp-number">
+        <button onclick="function3()">try your luck</button>
+        <p class="js-result"></p>
+    </div>
+    </div>
+<script>
+        let name = '';
+        let randomnumber = Math.floor(Math.random() * 9) + 1;
+        console.log(randomnumber);
+        let guessnumber = 0;
+        let chances = 3;
+        function function1(){
+            name = document.querySelector('.js-name').value;
+            console.log(name)
+            if(name === ''){
+                alert('please enter your name');
+            }else{
+                function2();  
+            }
+            return name;
+            };
+
+            function function2(){
+                document.querySelector('.div1').style.display = 'block';
+                document.querySelector('.js-p1').innerHTML = `Hello ${name}!`;
+            };
+
+            function function3(){
+                
+                let guessnumber = document.querySelector('.js-inp-number').value;
+                if(randomnumber == guessnumber){
+                    document.querySelector('.js-result').innerHTML = `heyy ${name} you are a lucky fellow!🎉`;
+                }else{
+                chances--;            
+                if (chances === 0){
+                    document.querySelector('.js-result').innerHTML =
+                        `Better luck next time, ${name}! The number was ${randomnumber}.`;
+                } else {
+                    document.querySelector('.js-result').innerHTML =
+                        `Wrong guess! ${chances} chances left`;
+                }
+                     }
+            };
+
+
+
+</script>
+</body>
+</html>
